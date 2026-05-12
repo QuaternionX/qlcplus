@@ -101,17 +101,6 @@ jobs:
           make -j$(nproc)
           make install
 
-      - name: D2XX SDK (64 bit)
-        shell: msys2 {0}
-        run: |
-          mkdir -p /c/projects/D2XXSDK
-          wget https://ftdichip.com/wp-content/uploads/2023/09/CDM-v2.12.36.4-WHQL-Certified.zip -O /c/projects/D2XXSDK/cdm.zip
-          cd /c/projects/D2XXSDK
-          unzip cdm.zip
-          cd amd64
-          gendef.exe - ftd2xx64.dll > ftd2xx.def
-          dlltool -k --input-def ftd2xx.def --dllname ftd2xx64.dll --output-lib libftd2xx.a
-
       - name: Print program versions
         shell: msys2 {0}
         run: |
